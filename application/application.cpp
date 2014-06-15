@@ -70,6 +70,11 @@ void Application::setWindowTitle(std::string title)
     mWindow.setTitle(title.c_str());
 }
 
+void Application::setWindowSize(unsigned int w, unsigned int h)
+{
+    mWindow.setSize(sf::Vector2u(w, h));
+}
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -112,7 +117,8 @@ void Application::exposeToLua()
 {
     mLuaState["NdlApplication"].SetObj(
         *this,
-        "setWindowTitle", &Application::setWindowTitle
+        "setWindowTitle", &Application::setWindowTitle,
+        "setWindowSize", &Application::setWindowSize
     );
 
     mLuaState["NdlVector2i"].SetClass<sf::Vector2i, unsigned int, unsigned int>(

@@ -47,6 +47,7 @@ public:
     void        run();
 
     void        setWindowTitle(std::string title);
+    void        setWindowSize(unsigned int w, unsigned int h);
 
 
 private:
