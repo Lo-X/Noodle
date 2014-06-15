@@ -1,1 +1,4 @@
 Noodle.pro.user
+*.so*
+.obj
+qt_licence*

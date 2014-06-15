@@ -26,10 +26,37 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-class Application
+#include "../noodle_global.h"
+
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Time.hpp>
+#include <string>
+
+namespace ndl
+{
+
+class NOODLESHARED_EXPORT Application
 {
 public:
-    Application();
+    Application(unsigned int width, unsigned int height, const std::string& title);
+
+    void        run();
+    void        setStatsEnabled(bool b = true);
+
+private:
+    void        init();
+    void        processEvents();
+    void        update(sf::Time dt);
+    void        render();
+
+private:
+    static const sf::Time   TimePerFrame;
+    sf::RenderWindow        mWindow;
+    // Textures, Fonts, Sounds, ...
+
+    // StateStack
 };
+
+}
 
 #endif // APPLICATION_HPP

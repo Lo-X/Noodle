@@ -24,7 +24,49 @@
 
 
 #include "application.hpp"
+#include "selene.h"
 
-Application::Application()
+using namespace ndl;
+
+const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
+
+Application::Application(unsigned int width, unsigned int height, const std::string &title) :
+    mWindow(sf::VideoMode(width, height), title.c_str(), sf::Style::Close)
 {
+    mWindow.setKeyRepeatEnabled(false);
+
+    init();
 }
+
+
+void Application::init()
+{
+    sel::State state{true};
+    if(!state.Load("scripts/init.luac"))
+    {
+        if(!state.Load("scripts/init.lua"))
+        {
+            throw std::runtime_error("The file script/init.lua has not been found !");
+        }
+    }
+}
+
+void Application::processEvents()
+{
+
+}
+
+
+void Application::update(sf::Time dt)
+{
+
+}
+
+
+
+void Application::render()
+{
+
+}
+
+

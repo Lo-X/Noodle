@@ -9,14 +9,41 @@ QT       -= core gui
 TARGET = Noodle
 TEMPLATE = lib
 
+LIBS += -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network
+QMAKE_CXXFLAGS += -std=c++11
+OBJECTS_DIR = .obj
+
 DEFINES += NOODLE_LIBRARY
 
-SOURCES +=
+SOURCES += \
+    application/application.cpp
 
-HEADERS += noodle.h\
-        noodle_global.h
+HEADERS +=\
+        noodle_global.h \
+    noodle.hpp \
+    application/application.hpp \
+    selene.h \
+    selene/BaseFun.h \
+    selene/Class.h \
+    selene/ClassFun.h \
+    selene/Ctor.h \
+    selene/Dtor.h \
+    selene/exotics.h \
+    selene/Fun.h \
+    selene/function.h \
+    selene/LuaName.h \
+    selene/LuaRef.h \
+    selene/Obj.h \
+    selene/ObjFun.h \
+    selene/primitives.h \
+    selene/Registry.h \
+    selene/Selector.h \
+    selene/State.h \
+    selene/traits.h \
+    selene/Tuple.h \
+    selene/util.h
 
 unix {
-    target.path = /usr/lib
+    target.path = /usr/local/lib
     INSTALLS += target
 }
