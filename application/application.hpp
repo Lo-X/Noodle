@@ -29,6 +29,7 @@
 #include "../noodle_global.h"
 #include "../selene.h"
 #include "mouse.hpp"
+#include "keyboard.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Time.hpp>
@@ -60,7 +61,11 @@ private:
     static const sf::Time   TimePerFrame;
     sf::RenderWindow        mWindow;
     sel::State              mLuaState;
+
+    // Lua objects
     Mouse                   mMouse;
+    Keyboard                mKeyboard;
+
     // Textures, Fonts, Sounds, ...
 
     // StateStack

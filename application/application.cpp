@@ -127,6 +127,11 @@ void Application::exposeToLua()
         "y", &Mouse::y,
         "setPosition", &Mouse::setPosition
     );
+
+    mLuaState["NdlKeyboard"].SetObj(
+        mKeyboard,
+        "isKeyPressed", &Keyboard::isKeyPressed
+    );
 }
 
 

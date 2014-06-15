@@ -20,7 +20,10 @@ local m = require("mouse");
 Noodle.Mouse = Class(NdlMouse);
 Noodle.Mouse.Button = m.Button;
 
---print(Noodle.Json.encode(Noodle.Mouse));
+-- Keyboard
+local k = require("keyboard");
+Noodle.Keyboard = Class(NdlKeyboard);
+Noodle.Keyboard.Key = k.Key;
 
 
 return Noodle;
