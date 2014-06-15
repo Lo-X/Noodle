@@ -45,6 +45,7 @@ public:
     Application(unsigned int width, unsigned int height, const std::string& title);
 
     void        run();
+    void        stop();
 
     void        setWindowTitle(std::string title);
     void        setWindowSize(unsigned int w, unsigned int h);

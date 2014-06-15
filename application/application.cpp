@@ -64,6 +64,11 @@ void Application::run()
     quit();
 }
 
+void Application::stop()
+{
+    mWindow.close();
+}
+
 
 void Application::setWindowTitle(std::string title)
 {
@@ -118,7 +123,9 @@ void Application::exposeToLua()
     mLuaState["NdlApplication"].SetObj(
         *this,
         "setWindowTitle", &Application::setWindowTitle,
-        "setWindowSize", &Application::setWindowSize
+        "setWindowSize", &Application::setWindowSize,
+        "close", &Application::stop,
+        "stop", &Application::stop
     );
 
     mLuaState["NdlVector2i"].SetClass<sf::Vector2i, unsigned int, unsigned int>(
