@@ -27,6 +27,8 @@
 
 #include <SFML/Window/Mouse.hpp>
 
+using namespace ndl;
+
 Mouse::Mouse(sf::Window& relativeTo) :
     mWindow(relativeTo)
 {

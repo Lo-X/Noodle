@@ -26,10 +26,15 @@
 #ifndef MOUSE_HPP
 #define MOUSE_HPP
 
+#include "../noodle_global.h"
+
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
 
-class Mouse
+namespace ndl
+{
+
+class NOODLESHARED_EXPORT Mouse
 {
 public:
     Mouse(sf::Window &relativeTo);
@@ -42,5 +47,7 @@ public:
 private:
     sf::Window&     mWindow;
 };
+
+}
 
 #endif // MOUSE_HPP
