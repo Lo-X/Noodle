@@ -25,6 +25,30 @@
 
 #include "mouse.hpp"
 
-Mouse::Mouse()
+#include <SFML/Window/Mouse.hpp>
+
+Mouse::Mouse(sf::Window& relativeTo) :
+    mWindow(relativeTo)
 {
+}
+
+
+bool Mouse::isButtonPressed(int button)
+{
+    return sf::Mouse::isButtonPressed((sf::Mouse::Button(button)));
+}
+
+int Mouse::x()
+{
+    return sf::Mouse::getPosition(mWindow).x;
+}
+
+int Mouse::y()
+{
+    return sf::Mouse::getPosition(mWindow).y;
+}
+
+void Mouse::setPosition(int posx, int posy)
+{
+    sf::Mouse::setPosition(sf::Vector2i(posx, posy), mWindow);
 }

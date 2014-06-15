@@ -1,0 +1,33 @@
+
+
+local Noodle = require("scripts/Noodle/noodle");
+local Json = Noodle.Json;
+
+
+function Init()
+	Noodle.Application.setWindowTitle("It Works !");
+
+	print("Init function called");
+end
+
+
+function Step(dtInSeconds)
+	--print("Step "..dtInSeconds);
+	--print("Mouse={".. Mouse.x() ..",".. Mouse.y() .."}");
+	if Noodle.Mouse.isButtonPressed(Noodle.Mouse.Button.Left) then
+		print("Left Mouse Button pressed !");
+	end
+end
+
+
+function Render()
+
+end
+
+
+function Quit()
+	print("Goodbye !");
+end
+
+
+print("main.lua loaded !");

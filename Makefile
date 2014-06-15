@@ -45,8 +45,10 @@ OBJECTS_DIR   = .obj/
 
 ####### Files
 
-SOURCES       = application/application.cpp 
-OBJECTS       = .obj/application.o
+SOURCES       = application/application.cpp \
+		application/mouse.cpp 
+OBJECTS       = .obj/application.o \
+		.obj/mouse.o
 DIST          = /opt/Qt/5.2.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/shell-unix.conf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/unix.conf \
@@ -457,8 +459,12 @@ compiler_clean:
 		selene/ObjFun.h \
 		selene/Selector.h \
 		selene/util.h \
-		selene/Tuple.h
+		selene/Tuple.h \
+		application/mouse.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
+
+.obj/mouse.o: application/mouse.cpp application/mouse.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/mouse.o application/mouse.cpp
 
 ####### Install
 

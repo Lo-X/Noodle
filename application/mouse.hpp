@@ -26,10 +26,21 @@
 #ifndef MOUSE_HPP
 #define MOUSE_HPP
 
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Window.hpp>
+
 class Mouse
 {
 public:
-    Mouse();
+    Mouse(sf::Window &relativeTo);
+
+    bool            isButtonPressed(int button);
+    int             x();
+    int             y();
+    void            setPosition(int posx, int posy);
+
+private:
+    sf::Window&     mWindow;
 };
 
 #endif // MOUSE_HPP

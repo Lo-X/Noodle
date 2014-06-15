@@ -16,7 +16,8 @@ OBJECTS_DIR = .obj
 DEFINES += NOODLE_LIBRARY
 
 SOURCES += \
-    application/application.cpp
+    application/application.cpp \
+    application/mouse.cpp
 
 HEADERS +=\
         noodle_global.h \
@@ -41,7 +42,8 @@ HEADERS +=\
     selene/State.h \
     selene/traits.h \
     selene/Tuple.h \
-    selene/util.h
+    selene/util.h \
+    application/mouse.hpp
 
 unix {
     target.path = /usr/local/lib

@@ -27,10 +27,13 @@
 #define APPLICATION_HPP
 
 #include "../noodle_global.h"
+#include "../selene.h"
+#include "mouse.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Time.hpp>
 #include <string>
+
 
 namespace ndl
 {
@@ -41,17 +44,23 @@ public:
     Application(unsigned int width, unsigned int height, const std::string& title);
 
     void        run();
-    void        setStatsEnabled(bool b = true);
+
+    void        setWindowTitle(std::string title);
+
 
 private:
     void        init();
+    void        exposeToLua();
     void        processEvents();
     void        update(sf::Time dt);
     void        render();
+    void        quit();
 
 private:
     static const sf::Time   TimePerFrame;
     sf::RenderWindow        mWindow;
+    sel::State              mLuaState;
+    Mouse                   mMouse;
     // Textures, Fonts, Sounds, ...
 
     // StateStack
