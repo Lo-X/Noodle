@@ -17,7 +17,8 @@ DEFINES += NOODLE_LIBRARY
 
 SOURCES += \
     application/application.cpp \
-    application/mouse.cpp
+    application/mouse.cpp \
+    application/keyboard.cpp
 
 HEADERS +=\
         noodle_global.h \
@@ -43,7 +44,8 @@ HEADERS +=\
     selene/traits.h \
     selene/Tuple.h \
     selene/util.h \
-    application/mouse.hpp
+    application/mouse.hpp \
+    application/keyboard.hpp
 
 unix {
     target.path = /usr/local/lib

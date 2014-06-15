@@ -46,9 +46,11 @@ OBJECTS_DIR   = .obj/
 ####### Files
 
 SOURCES       = application/application.cpp \
-		application/mouse.cpp 
+		application/mouse.cpp \
+		application/keyboard.cpp 
 OBJECTS       = .obj/application.o \
-		.obj/mouse.o
+		.obj/mouse.o \
+		.obj/keyboard.o
 DIST          = /opt/Qt/5.2.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/shell-unix.conf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/unix.conf \
@@ -463,8 +465,13 @@ compiler_clean:
 		application/mouse.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
-.obj/mouse.o: application/mouse.cpp application/mouse.hpp
+.obj/mouse.o: application/mouse.cpp application/mouse.hpp \
+		noodle_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/mouse.o application/mouse.cpp
+
+.obj/keyboard.o: application/keyboard.cpp application/keyboard.hpp \
+		noodle_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/keyboard.o application/keyboard.cpp
 
 ####### Install
 
