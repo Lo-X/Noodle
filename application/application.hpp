@@ -30,6 +30,7 @@
 #include "../selene.h"
 #include "mouse.hpp"
 #include "keyboard.hpp"
+#include "states/statestack.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Time.hpp>
 #include <string>
@@ -53,6 +54,9 @@ public:
     void        setWindowTitle(std::string title);
     void        setWindowSize(unsigned int w, unsigned int h);
 
+    template <typename T>
+    void        registerState(const std::string& id);
+
 
 private:
     void        init();
@@ -67,6 +71,9 @@ private:
     sf::RenderWindow        mWindow;
     sel::State              mLuaState;
 
+    // StateStack
+    StateStack              mStateStack;
+
     // Lua objects
     Mouse                   mMouse;
     Keyboard                mKeyboard;
@@ -75,6 +82,13 @@ private:
 
     // StateStack
 };
+
+
+template <typename T>
+void Application::registerState(const std::string& id)
+{
+    mStateStack.registerState<T>(id);
+}
 
 
 }

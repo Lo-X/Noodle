@@ -24,7 +24,6 @@
 
 
 #include "application.hpp"
-
 #include <SFML/Window/Event.hpp>
 
 using namespace ndl::app;
@@ -34,6 +33,7 @@ const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 Application::Application(unsigned int width, unsigned int height, const std::string &title) :
     mWindow(sf::VideoMode(width, height), title.c_str(), sf::Style::Close),
     mLuaState{true},
+    mStateStack(State::Context(mWindow)),
     mMouse(mWindow)
 {
     mWindow.setKeyRepeatEnabled(false);
