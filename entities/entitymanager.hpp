@@ -26,10 +26,41 @@
 #ifndef ENTITYMANAGER_HPP
 #define ENTITYMANAGER_HPP
 
-class EntityManager
+#include "../noodle_global.h"
+#include "entity.hpp"
+#include <string>
+#include <map>
+
+namespace ndl
+{
+
+namespace es
+{
+
+
+class NOODLESHARED_EXPORT EntityManager
 {
 public:
+    typedef std::map<std::string,Entity> AliasMap;
+
+public:
     EntityManager();
+
+    Entity          createEntity();
+    Entity          createEntity(const std::string& alias);
+    Entity          getByAlias(const std::string& alias);
+    void            registerAlias(Entity e, const std::string& alias);
+
+
+private:
+    Entity          mNextEntity;
+    AliasMap        mEntityAliases;
+
 };
+
+
+}
+
+}
 
 #endif // ENTITYMANAGER_HPP

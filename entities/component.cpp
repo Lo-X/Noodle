@@ -23,4 +23,54 @@
 ////////////////////////////////////////////////////////////
 
 
+#include "component.hpp"
+#include "system.hpp"
+
+using namespace ndl::es;
+
+
+Component::Component(Entity e, System &s) :
+    mOwner(e),
+    mSystem(s),
+    mAutoRemoved(false)
+{
+    mSystem.addComponent(shared_from_this());
+}
+
+Component::~Component()
+{
+    if(!mAutoRemoved)
+        mSystem.removeComponentNow(shared_from_this());
+}
+
+
+Entity Component::owner() const
+{
+    return mOwner;
+}
+
+
+System& Component::system() const
+{
+    return mSystem;
+}
+
+
+void Component::deleteLater()
+{
+    mSystem.removeComponentLater(shared_from_this());
+}
+
+//
+void Component::start()
+{
+
+}
+
+
+void Component::stop()
+{
+
+}
+
 

@@ -24,7 +24,62 @@
 
 
 #include "system.hpp"
+#include <cassert>
+
+using namespace ndl::es;
 
 System::System()
 {
+}
+
+
+System::~System()
+{
+}
+
+
+void System::addComponent(Component::Ptr component)
+{
+    mNewComponents.push_back(component);
+}
+
+
+void System::removeComponentLater(Component::Ptr component)
+{
+    auto it = mComponents.find(component);
+
+    assert(it != mComponents.end());
+
+    mOldComponents.push_back(*it);
+    mComponents.erase(it);
+}
+
+void System::removeComponentNow(Component::Ptr component)
+{
+    auto it = mComponents.find(component);
+
+    assert(it != mComponents.end());
+
+    mComponents.erase(it);
+}
+
+
+void System::update(sf::Time dt)
+{
+    while(!mNewComponents.empty())
+    {
+        Component::Ptr c = mNewComponents.back();
+        c->start();
+        mComponents.insert(c);
+        mNewComponents.pop_back();
+    }
+
+    while(!mOldComponents.empty())
+    {
+        Component::Ptr c = mOldComponents.back();
+        c->stop();
+        mNewComponents.pop_back();
+    }
+
+    update(dt);
 }

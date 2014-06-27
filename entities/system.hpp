@@ -26,10 +26,47 @@
 #ifndef SYSTEM_HPP
 #define SYSTEM_HPP
 
-class System
+#include "../noodle_global.h"
+#include "entitymanager.hpp"
+#include "component.hpp"
+#include <set>
+#include <vector>
+#include <memory>
+#include <SFML/System/Time.hpp>
+
+namespace ndl
+{
+
+namespace es
+{
+
+
+class NOODLESHARED_EXPORT System
 {
 public:
+    typedef std::set<Component::Ptr> ComponentSet;
+    typedef std::vector<Component::Ptr> ComponentVector;
+
+public:
     System();
+    virtual ~System();
+
+    void            addComponent(Component::Ptr component);
+    void            removeComponentLater(Component::Ptr component);
+    void            removeComponentNow(Component::Ptr component);
+
+    void            update(sf::Time dt);
+    virtual void    updateComponents(sf::Time dt) = 0;
+
+protected:
+    ComponentVector     mNewComponents;
+    ComponentSet        mComponents;
+    ComponentVector     mOldComponents;
 };
+
+
+}
+
+}
 
 #endif // SYSTEM_HPP

@@ -26,4 +26,12 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
+namespace ndl
+{
+namespace es
+{
+typedef unsigned int Entity;
+}
+}
+
 #endif // ENTITY_HPP

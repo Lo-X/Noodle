@@ -26,10 +26,45 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
-class Component
+#include "../noodle_global.h"
+#include "entitymanager.hpp"
+#include <memory>
+
+namespace ndl
+{
+
+namespace es
+{
+
+class System;
+
+class NOODLESHARED_EXPORT Component : public std::enable_shared_from_this<Component>
 {
 public:
-    Component();
+    typedef std::shared_ptr<Component> Ptr;
+
+public:
+    Component(Entity e, System& s);
+    virtual ~Component();
+
+    Entity      owner() const;
+    System&     system() const;
+
+    void        deleteLater();
+
+    //
+    virtual void    start();
+    virtual void    stop();
+
+private:
+    Entity      mOwner;
+    System&     mSystem;
+    bool        mAutoRemoved;
 };
+
+
+}
+
+}
 
 #endif // COMPONENT_HPP

@@ -18,11 +18,13 @@ DEFINES += NOODLE_LIBRARY
 SOURCES += \
     application/application.cpp \
     application/mouse.cpp \
-    application/keyboard.cpp
+    application/keyboard.cpp \
+    entities/system.cpp \
+    entities/entitymanager.cpp \
+    entities/component.cpp
 
 HEADERS +=\
         noodle_global.h \
-    noodle.hpp \
     application/application.hpp \
     selene.h \
     selene/BaseFun.h \
@@ -45,7 +47,14 @@ HEADERS +=\
     selene/Tuple.h \
     selene/util.h \
     application/mouse.hpp \
-    application/keyboard.hpp
+    application/keyboard.hpp \
+    entities/system.hpp \
+    entities/entity.hpp \
+    entities/entitymanager.hpp \
+    entities/component.hpp \
+    Entity.hpp \
+    Noodle.hpp \
+    Application.hpp
 
 unix {
     target.path = /usr/local/lib

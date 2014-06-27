@@ -24,7 +24,45 @@
 
 
 #include "entitymanager.hpp"
+#include <cassert>
 
-EntityManager::EntityManager()
+using namespace ndl::es;
+
+EntityManager::EntityManager() :
+    mNextEntity(0)
 {
 }
+
+
+Entity EntityManager::createEntity()
+{
+    return mNextEntity++;
+}
+
+
+Entity EntityManager::createEntity(const std::string &alias)
+{
+    Entity e = mNextEntity++;
+
+    assert(mEntityAliases.find(alias) == mEntityAliases.end());
+
+    mEntityAliases[alias] = e;
+    return e;
+}
+
+
+Entity EntityManager::getByAlias(const std::string &alias)
+{
+    assert(mEntityAliases.find(alias) != mEntityAliases.end());
+
+    return mEntityAliases[alias];
+}
+
+
+void EntityManager::registerAlias(Entity e, const std::string &alias)
+{
+    assert(mEntityAliases.find(alias) == mEntityAliases.end());
+
+    mEntityAliases[alias] = e;
+}
+
