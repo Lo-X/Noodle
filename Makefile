@@ -50,13 +50,17 @@ SOURCES       = application/application.cpp \
 		application/keyboard.cpp \
 		entities/system.cpp \
 		entities/entitymanager.cpp \
-		entities/component.cpp 
+		entities/component.cpp \
+		application/states/statestack.cpp \
+		application/states/state.cpp 
 OBJECTS       = .obj/application.o \
 		.obj/mouse.o \
 		.obj/keyboard.o \
 		.obj/system.o \
 		.obj/entitymanager.o \
-		.obj/component.o
+		.obj/component.o \
+		.obj/statestack.o \
+		.obj/state.o
 DIST          = /opt/Qt/5.2.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/shell-unix.conf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/unix.conf \
@@ -498,6 +502,16 @@ compiler_clean:
 		entities/entity.hpp \
 		entities/system.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/component.o entities/component.cpp
+
+.obj/statestack.o: application/states/statestack.cpp application/states/statestack.hpp \
+		noodle_global.h \
+		application/states/state.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/statestack.o application/states/statestack.cpp
+
+.obj/state.o: application/states/state.cpp application/states/state.hpp \
+		noodle_global.h \
+		application/states/statestack.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/state.o application/states/state.cpp
 
 ####### Install
 

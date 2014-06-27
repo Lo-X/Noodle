@@ -22,7 +22,8 @@ SOURCES += \
     entities/system.cpp \
     entities/entitymanager.cpp \
     entities/component.cpp \
-    application/states/statestack.cpp
+    application/states/statestack.cpp \
+    application/states/state.cpp
 
 HEADERS +=\
         noodle_global.h \
@@ -56,7 +57,8 @@ HEADERS +=\
     Entity.hpp \
     Noodle.hpp \
     Application.hpp \
-    application/states/statestack.hpp
+    application/states/statestack.hpp \
+    application/states/state.hpp
 
 unix {
     target.path = /usr/local/lib

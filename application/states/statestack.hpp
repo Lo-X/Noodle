@@ -27,6 +27,13 @@
 #define STATESTACK_HPP
 
 #include "../../noodle_global.h"
+#include "state.hpp"
+#include <SFML/System/NonCopyable.hpp>
+#include <vector>
+#include <utility>
+#include <functional>
+#include <map>
+#include <string>
 
 namespace ndl
 {
@@ -38,8 +45,60 @@ namespace app
 class NOODLESHARED_EXPORT StateStack
 {
 public:
-    StateStack();
+    typedef std::map<const std::string,std::function<State::Ptr()>> FactoryMap;
+
+    enum Action
+    {
+        Push,
+        Pop,
+        Clear
+    };
+
+public:
+    explicit StateStack(State::Context context);
+
+    template <typename T>
+    void                registerState(const std::string& id);
+    void                update(sf::Time dt);
+    void                draw();
+    void                handleEvent(const sf::Event& event);
+
+    void                pushState(const std::string& id);
+    void                popState();
+    void                clearStates();
+
+    bool                isEmpty() const;
+
+private:
+    State::Ptr          createState(const std::string& id);
+    void                applyPendingChanges();
+
+private:
+    struct PendingChange
+    {
+        explicit PendingChange(Action action, const std::string& id = "none");
+        Action              action;
+        const std::string&  stateID;
+    };
+
+private:
+    std::vector<State::Ptr>         mStack;
+    std::vector<PendingChange>      mPendingList;
+    State::Context                  mContext;
+    FactoryMap                      mFactories;
+
 };
+
+
+template <typename T>
+void StateStack::registerState(const std::string& id)
+{
+    mFactories[id] = [this] ()
+    {
+        return State::Ptr(new T(*this, mContext));
+    };
+}
+
 
 
 }
