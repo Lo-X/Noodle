@@ -31,11 +31,18 @@
 namespace ndl
 {
 
+namespace app
+{
+
+
 class NOODLESHARED_EXPORT Keyboard
 {
 public:
     bool    isKeyPressed(int key);
 };
+
+
+}
 
 }
 

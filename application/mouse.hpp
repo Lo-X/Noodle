@@ -34,6 +34,10 @@
 namespace ndl
 {
 
+namespace app
+{
+
+
 class NOODLESHARED_EXPORT Mouse
 {
 public:
@@ -47,6 +51,9 @@ public:
 private:
     sf::Window&     mWindow;
 };
+
+
+}
 
 }
 

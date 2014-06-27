@@ -27,7 +27,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 
-using namespace ndl;
+using namespace ndl::app;
 
 bool Keyboard::isKeyPressed(int key)
 {

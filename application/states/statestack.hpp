@@ -26,10 +26,24 @@
 #ifndef STATESTACK_HPP
 #define STATESTACK_HPP
 
-class StateStack
+#include "../../noodle_global.h"
+
+namespace ndl
+{
+
+namespace app
+{
+
+
+class NOODLESHARED_EXPORT StateStack
 {
 public:
     StateStack();
 };
+
+
+}
+
+}
 
 #endif // STATESTACK_HPP

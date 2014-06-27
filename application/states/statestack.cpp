@@ -25,6 +25,8 @@
 
 #include "statestack.hpp"
 
+using namespace ndl::app;
+
 StateStack::StateStack()
 {
 }

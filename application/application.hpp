@@ -30,7 +30,6 @@
 #include "../selene.h"
 #include "mouse.hpp"
 #include "keyboard.hpp"
-
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Time.hpp>
 #include <string>
@@ -38,6 +37,10 @@
 
 namespace ndl
 {
+
+namespace app
+{
+
 
 class NOODLESHARED_EXPORT Application
 {
@@ -72,6 +75,9 @@ private:
 
     // StateStack
 };
+
+
+}
 
 }
 

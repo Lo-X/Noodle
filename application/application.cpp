@@ -27,7 +27,7 @@
 
 #include <SFML/Window/Event.hpp>
 
-using namespace ndl;
+using namespace ndl::app;
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
