@@ -47,10 +47,16 @@ OBJECTS_DIR   = .obj/
 
 SOURCES       = application/application.cpp \
 		application/mouse.cpp \
-		application/keyboard.cpp 
+		application/keyboard.cpp \
+		entities/system.cpp \
+		entities/entitymanager.cpp \
+		entities/component.cpp 
 OBJECTS       = .obj/application.o \
 		.obj/mouse.o \
-		.obj/keyboard.o
+		.obj/keyboard.o \
+		.obj/system.o \
+		.obj/entitymanager.o \
+		.obj/component.o
 DIST          = /opt/Qt/5.2.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/shell-unix.conf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/unix.conf \
@@ -462,7 +468,8 @@ compiler_clean:
 		selene/Selector.h \
 		selene/util.h \
 		selene/Tuple.h \
-		application/mouse.hpp
+		application/mouse.hpp \
+		application/keyboard.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
 .obj/mouse.o: application/mouse.cpp application/mouse.hpp \
@@ -472,6 +479,25 @@ compiler_clean:
 .obj/keyboard.o: application/keyboard.cpp application/keyboard.hpp \
 		noodle_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/keyboard.o application/keyboard.cpp
+
+.obj/system.o: entities/system.cpp entities/system.hpp \
+		noodle_global.h \
+		entities/entitymanager.hpp \
+		entities/entity.hpp \
+		entities/component.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/system.o entities/system.cpp
+
+.obj/entitymanager.o: entities/entitymanager.cpp entities/entitymanager.hpp \
+		noodle_global.h \
+		entities/entity.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/entitymanager.o entities/entitymanager.cpp
+
+.obj/component.o: entities/component.cpp entities/component.hpp \
+		noodle_global.h \
+		entities/entitymanager.hpp \
+		entities/entity.hpp \
+		entities/system.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/component.o entities/component.cpp
 
 ####### Install
 

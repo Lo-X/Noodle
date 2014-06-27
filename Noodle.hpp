@@ -1,7 +1,6 @@
 #ifndef NOODLE_H
 #define NOODLE_H
 
-#include "noodle_global.h"
-
+#include "Entity.hpp"
 
 #endif // NOODLE_H

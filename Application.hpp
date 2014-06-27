@@ -26,4 +26,8 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include "application/application.hpp"
+#include "application/keyboard.hpp"
+#include "application/mouse.hpp"
+
 #endif // APPLICATION_HPP
