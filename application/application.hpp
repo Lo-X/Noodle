@@ -56,6 +56,7 @@ public:
 
     template <typename T>
     void        registerState(const std::string& id);
+    void        pushState(const std::string& id);
 
 
 private:

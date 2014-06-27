@@ -46,7 +46,7 @@ void Application::run()
 
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-    while(mWindow.isOpen())
+    while(!mStateStack.isEmpty())
     {
         sf::Time elapsedTime = clock.restart();
         timeSinceLastUpdate += elapsedTime;
@@ -61,6 +61,7 @@ void Application::run()
         render();
     }
 
+    mWindow.close();
     quit();
 }
 
@@ -78,6 +79,12 @@ void Application::setWindowTitle(std::string title)
 void Application::setWindowSize(unsigned int w, unsigned int h)
 {
     mWindow.setSize(sf::Vector2u(w, h));
+}
+
+
+void Application::pushState(const std::string &id)
+{
+    mStateStack.pushState(id);
 }
 
 
