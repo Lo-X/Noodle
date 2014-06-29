@@ -85,8 +85,6 @@ private:
     rsc::MusicPlayer        mMusic;
     rsc::SoundHolder        mSounds;
     rsc::ShaderHolder       mShaders;
-
-    // StateStack
 };
 
 
