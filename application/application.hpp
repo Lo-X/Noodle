@@ -83,7 +83,7 @@ private:
     rsc::TextureHolder      mTextures;
     rsc::FontHolder         mFonts;
     rsc::MusicPlayer        mMusic;
-    rsc::SoundHolder        mSounds;
+    rsc::SoundPlayer        mSounds;
     rsc::ShaderHolder       mShaders;
 };
 

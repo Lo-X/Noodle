@@ -29,6 +29,7 @@
 #include <noodle_global.h>
 #include <resources/resourceholder.hpp>
 #include <resources/musicplayer.hpp>
+#include <resources/soundplayer.hpp>
 #include <memory>
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -53,14 +54,14 @@ public:
                 rsc::TextureHolder& textures,
                 rsc::FontHolder& fonts,
                 rsc::MusicPlayer& music,
-                rsc::SoundHolder& sounds,
+                rsc::SoundPlayer& sounds,
                 rsc::ShaderHolder& shaders);
 
         sf::RenderWindow&   window;
         rsc::TextureHolder& textures;
         rsc::FontHolder&    fonts;
         rsc::MusicPlayer&   music;
-        rsc::SoundHolder&   sounds;
+        rsc::SoundPlayer&   sounds;
         rsc::ShaderHolder&  shaders;
 
         // player ?
