@@ -23,7 +23,8 @@ SOURCES += \
     entities/entitymanager.cpp \
     entities/component.cpp \
     application/states/statestack.cpp \
-    application/states/state.cpp
+    application/states/state.cpp \
+    resources/soundplayer.cpp
 
 HEADERS +=\
         noodle_global.h \
@@ -60,7 +61,8 @@ HEADERS +=\
     application/states/statestack.hpp \
     application/states/state.hpp \
     resources/resourceholder.hpp \
-    resources/musicplayer.hpp
+    resources/musicplayer.hpp \
+    resources/soundplayer.hpp
 
 unix {
     target.path = /usr/local/lib

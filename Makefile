@@ -52,7 +52,8 @@ SOURCES       = application/application.cpp \
 		entities/entitymanager.cpp \
 		entities/component.cpp \
 		application/states/statestack.cpp \
-		application/states/state.cpp 
+		application/states/state.cpp \
+		resources/soundplayer.cpp 
 OBJECTS       = .obj/application.o \
 		.obj/mouse.o \
 		.obj/keyboard.o \
@@ -60,7 +61,8 @@ OBJECTS       = .obj/application.o \
 		.obj/entitymanager.o \
 		.obj/component.o \
 		.obj/statestack.o \
-		.obj/state.o
+		.obj/state.o \
+		.obj/soundplayer.o
 DIST          = /opt/Qt/5.2.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/shell-unix.conf \
 		/opt/Qt/5.2.1/gcc_64/mkspecs/common/unix.conf \
@@ -476,7 +478,8 @@ compiler_clean:
 		application/keyboard.hpp \
 		application/states/statestack.hpp \
 		application/states/state.hpp \
-		resources/resourceholder.hpp
+		resources/resourceholder.hpp \
+		resources/musicplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
 .obj/mouse.o: application/mouse.cpp application/mouse.hpp \
@@ -509,14 +512,21 @@ compiler_clean:
 .obj/statestack.o: application/states/statestack.cpp application/states/statestack.hpp \
 		noodle_global.h \
 		application/states/state.hpp \
-		resources/resourceholder.hpp
+		resources/resourceholder.hpp \
+		resources/musicplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/statestack.o application/states/statestack.cpp
 
 .obj/state.o: application/states/state.cpp application/states/state.hpp \
 		noodle_global.h \
 		resources/resourceholder.hpp \
+		resources/musicplayer.hpp \
 		application/states/statestack.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/state.o application/states/state.cpp
+
+.obj/soundplayer.o: resources/soundplayer.cpp resources/soundplayer.hpp \
+		resources/resourceholder.hpp \
+		noodle_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/soundplayer.o resources/soundplayer.cpp
 
 ####### Install
 
