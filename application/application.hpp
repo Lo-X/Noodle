@@ -79,7 +79,12 @@ private:
     Mouse                   mMouse;
     Keyboard                mKeyboard;
 
-    // Textures, Fonts, Sounds, ...
+    // Resources
+    rsc::TextureHolder      mTextures;
+    rsc::FontHolder         mFonts;
+    rsc::MusicPlayer        mMusic;
+    rsc::SoundHolder        mSounds;
+    rsc::ShaderHolder       mShaders;
 
     // StateStack
 };

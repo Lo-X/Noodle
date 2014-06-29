@@ -33,7 +33,7 @@ const sf::Time Application::sTimePerFrame = sf::seconds(1.f/60.f);
 Application::Application(unsigned int width, unsigned int height, const std::string &title) :
     mWindow(sf::VideoMode(width, height), title.c_str(), sf::Style::Close),
     mLuaState{true},
-    mStateStack(State::Context(mWindow)),
+    mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mShaders)),
     mMouse(mWindow)
 {
     mWindow.setKeyRepeatEnabled(false);

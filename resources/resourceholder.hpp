@@ -114,15 +114,12 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
 
 ////////////////////////////////////////////////////////////////////////
 
-// Forward declarations
-namespace sf
-{
-    class Texture;
-    class Font;
-    class Shader;
-    class Music;
-    class SoundBuffer;
-}
+
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Shader.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Sound.hpp>
 
 
 namespace ndl
