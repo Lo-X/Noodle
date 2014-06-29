@@ -23,8 +23,8 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "component.hpp"
-#include "system.hpp"
+#include <entities/component.hpp>
+#include <entities/system.hpp>
 
 using namespace ndl::es;
 

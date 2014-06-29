@@ -26,9 +26,9 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include "entities/entity.hpp"
-#include "entities/component.hpp"
-#include "entities/system.hpp"
-#include "entities/entitymanager.hpp"
+#include <entities/entity.hpp>
+#include <entities/component.hpp>
+#include <entities/system.hpp>
+#include <entities/entitymanager.hpp>
 
 #endif // ENTITY_HPP

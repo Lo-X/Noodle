@@ -26,8 +26,8 @@
 #ifndef STATESTACK_HPP
 #define STATESTACK_HPP
 
-#include "../../noodle_global.h"
-#include "state.hpp"
+#include <noodle_global.h>
+#include <application/states/state.hpp>
 #include <SFML/System/NonCopyable.hpp>
 #include <vector>
 #include <utility>

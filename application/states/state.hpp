@@ -26,7 +26,8 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
-#include "../../noodle_global.h"
+#include <noodle_global.h>
+#include <resources/resourceholder.hpp>
 #include <memory>
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>

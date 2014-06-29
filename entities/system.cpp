@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "system.hpp"
+#include <entities/system.hpp>
 #include <cassert>
 
 using namespace ndl::es;

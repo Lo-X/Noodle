@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "application.hpp"
+#include <application/application.hpp>
 #include <SFML/Window/Event.hpp>
 
 using namespace ndl::app;

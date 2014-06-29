@@ -26,8 +26,7 @@
 #ifndef MOUSE_HPP
 #define MOUSE_HPP
 
-#include "../noodle_global.h"
-
+#include <noodle_global.h>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
 

@@ -26,8 +26,8 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
-#include "../noodle_global.h"
-#include "entitymanager.hpp"
+#include <noodle_global.h>
+#include <entities/entitymanager.hpp>
 #include <memory>
 
 namespace ndl

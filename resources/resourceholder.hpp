@@ -26,7 +26,7 @@
 #ifndef RESOURCEHOLDER_HPP
 #define RESOURCEHOLDER_HPP
 
-#include "../noodle_global.h"
+#include <noodle_global.h>
 #include <map>
 #include <string>
 #include <memory>

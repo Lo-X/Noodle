@@ -23,8 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "keyboard.hpp"
-
+#include <application/keyboard.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
 using namespace ndl::app;

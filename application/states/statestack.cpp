@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "statestack.hpp"
+#include <application/states/statestack.hpp>
 #include <cassert>
 
 using namespace ndl::app;

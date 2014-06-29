@@ -23,8 +23,8 @@
 ////////////////////////////////////////////////////////////
 
 
-#include "state.hpp"
-#include "statestack.hpp"
+#include <application/states/state.hpp>
+#include <application/states/statestack.hpp>
 
 using namespace ndl::app;
 

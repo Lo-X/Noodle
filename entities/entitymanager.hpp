@@ -26,8 +26,8 @@
 #ifndef ENTITYMANAGER_HPP
 #define ENTITYMANAGER_HPP
 
-#include "../noodle_global.h"
-#include "entity.hpp"
+#include <noodle_global.h>
+#include <entities/entity.hpp>
 #include <string>
 #include <map>
 

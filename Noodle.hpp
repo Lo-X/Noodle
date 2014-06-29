@@ -1,6 +1,7 @@
 #ifndef NOODLE_H
 #define NOODLE_H
 
-#include "Entity.hpp"
+#include <Application.hpp>
+#include <Entity.hpp>
 
 #endif // NOODLE_H
