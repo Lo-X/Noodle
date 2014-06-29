@@ -473,7 +473,10 @@ compiler_clean:
 		selene/util.h \
 		selene/Tuple.h \
 		application/mouse.hpp \
-		application/keyboard.hpp
+		application/keyboard.hpp \
+		application/states/statestack.hpp \
+		application/states/state.hpp \
+		resources/resourceholder.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
 .obj/mouse.o: application/mouse.cpp application/mouse.hpp \
@@ -505,11 +508,13 @@ compiler_clean:
 
 .obj/statestack.o: application/states/statestack.cpp application/states/statestack.hpp \
 		noodle_global.h \
-		application/states/state.hpp
+		application/states/state.hpp \
+		resources/resourceholder.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/statestack.o application/states/statestack.cpp
 
 .obj/state.o: application/states/state.cpp application/states/state.hpp \
 		noodle_global.h \
+		resources/resourceholder.hpp \
 		application/states/statestack.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/state.o application/states/state.cpp
 

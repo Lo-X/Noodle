@@ -58,7 +58,8 @@ HEADERS +=\
     Noodle.hpp \
     Application.hpp \
     application/states/statestack.hpp \
-    application/states/state.hpp
+    application/states/state.hpp \
+    resources/resourceholder.hpp
 
 unix {
     target.path = /usr/local/lib
