@@ -28,6 +28,7 @@
 
 #include <noodle_global.h>
 #include <resources/resourceholder.hpp>
+#include <resources/musicplayer.hpp>
 #include <memory>
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -48,15 +49,21 @@ public:
 
     struct Context
     {
-        Context(sf::RenderWindow& window);
+        Context(sf::RenderWindow& window,
+                rsc::TextureHolder& textures,
+                rsc::FontHolder& fonts,
+                rsc::MusicPlayer& music,
+                rsc::SoundHolder& sounds,
+                rsc::ShaderHolder& shaders);
 
         sf::RenderWindow&   window;
-        // Textures
-        // Fonts
-        // Music
-        // SOunds
-        // Scripts
-        // Etc..
+        rsc::TextureHolder& textures;
+        rsc::FontHolder&    fonts;
+        rsc::MusicPlayer&   music;
+        rsc::SoundHolder&   sounds;
+        rsc::ShaderHolder&  shaders;
+
+        // player ?
     };
 
 public:

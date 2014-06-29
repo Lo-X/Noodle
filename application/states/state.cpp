@@ -28,8 +28,13 @@
 
 using namespace ndl::app;
 
-State::Context::Context(sf::RenderWindow &window) :
-    window(window)
+State::Context::Context(sf::RenderWindow &window, rsc::TextureHolder &textures, rsc::FontHolder &fonts, rsc::MusicPlayer &music, rsc::SoundHolder &sounds, rsc::ShaderHolder &shaders) :
+    window(window),
+    textures(textures),
+    fonts(fonts),
+    music(music),
+    sounds(sounds),
+    shaders(shaders)
 {
 }
 

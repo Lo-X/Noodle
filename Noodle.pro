@@ -59,7 +59,8 @@ HEADERS +=\
     Application.hpp \
     application/states/statestack.hpp \
     application/states/state.hpp \
-    resources/resourceholder.hpp
+    resources/resourceholder.hpp \
+    resources/musicplayer.hpp
 
 unix {
     target.path = /usr/local/lib
