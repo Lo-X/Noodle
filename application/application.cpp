@@ -28,7 +28,7 @@
 
 using namespace ndl::app;
 
-const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
+const sf::Time Application::sTimePerFrame = sf::seconds(1.f/60.f);
 
 Application::Application(unsigned int width, unsigned int height, const std::string &title) :
     mWindow(sf::VideoMode(width, height), title.c_str(), sf::Style::Close),
@@ -50,12 +50,12 @@ void Application::run()
     {
         sf::Time elapsedTime = clock.restart();
         timeSinceLastUpdate += elapsedTime;
-        while(timeSinceLastUpdate > TimePerFrame)
+        while(timeSinceLastUpdate > sTimePerFrame)
         {
-            timeSinceLastUpdate -= TimePerFrame;
+            timeSinceLastUpdate -= sTimePerFrame;
 
             processEvents();
-            update(TimePerFrame);
+            update(sTimePerFrame);
         }
 
         render();

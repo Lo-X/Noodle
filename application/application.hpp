@@ -68,7 +68,7 @@ private:
     void        quit();
 
 private:
-    static const sf::Time   TimePerFrame;
+    static const sf::Time   sTimePerFrame;
     sf::RenderWindow        mWindow;
     sel::State              mLuaState;
 
