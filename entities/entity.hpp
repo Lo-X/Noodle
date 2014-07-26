@@ -26,12 +26,18 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
+#include <Noodle/noodle_global.h>
+
 namespace ndl
 {
+
 namespace es
 {
+
 typedef unsigned int Entity;
+
 }
+
 }
 
 #endif // ENTITY_HPP

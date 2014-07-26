@@ -22,12 +22,9 @@
 //
 ////////////////////////////////////////////////////////////
 
-
-#ifndef APPLICATION_HPP
-#define APPLICATION_HPP
+#pragma once
 
 #include <Noodle/application/application.hpp>
 #include <Noodle/application/keyboard.hpp>
 #include <Noodle/application/mouse.hpp>
 
-#endif // APPLICATION_HPP

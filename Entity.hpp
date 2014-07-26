@@ -22,13 +22,10 @@
 //
 ////////////////////////////////////////////////////////////
 
-
-#ifndef ENTITY_HPP
-#define ENTITY_HPP
+#pragma once
 
 #include <Noodle/entities/entity.hpp>
 #include <Noodle/entities/component.hpp>
 #include <Noodle/entities/system.hpp>
 #include <Noodle/entities/entitymanager.hpp>
 
-#endif // ENTITY_HPP
