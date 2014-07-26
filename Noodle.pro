@@ -15,6 +15,8 @@ OBJECTS_DIR = .obj
 
 DEFINES += NOODLE_LIBRARY
 
+INCLUDEPATH += $$PWD/../
+
 SOURCES += \
     application/application.cpp \
     application/mouse.cpp \

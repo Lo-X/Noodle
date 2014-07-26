@@ -26,7 +26,7 @@
 #ifndef KEYBOARD_HPP
 #define KEYBOARD_HPP
 
-#include <noodle_global.h>
+#include <Noodle/noodle_global.h>
 
 namespace ndl
 {

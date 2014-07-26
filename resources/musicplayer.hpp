@@ -26,7 +26,7 @@
 #ifndef MUSICPLAYER_HPP
 #define MUSICPLAYER_HPP
 
-#include <resources/resourceholder.hpp>
+#include <Noodle/resources/resourceholder.hpp>
 #include <map>
 #include <string>
 #include <SFML/Audio/Music.hpp>

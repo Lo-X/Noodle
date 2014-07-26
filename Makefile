@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DNOODLE_LIBRARY -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -std=c++11 -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I/opt/Qt/5.2.1/gcc_64/mkspecs/linux-g++ -I.
+INCPATH       = -I/opt/Qt/5.2.1/gcc_64/mkspecs/linux-g++ -I. -I../../libs
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/opt/Qt/5.2.1/gcc_64 -shared -Wl,-soname,libNoodle.so.1
 LIBS          = $(SUBLIBS) -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network -lpthread 
@@ -456,7 +456,7 @@ compiler_clean:
 .obj/application.o: application/application.cpp application/application.hpp \
 		noodle_global.h \
 		selene.h \
-		selene/State.h \
+		../../libs/Noodle/selene/State.h \
 		selene/Registry.h \
 		selene/Class.h \
 		selene/ClassFun.h \
@@ -471,15 +471,17 @@ compiler_clean:
 		selene/Fun.h \
 		selene/Obj.h \
 		selene/ObjFun.h \
+		selene/State.h \
 		selene/Selector.h \
 		selene/util.h \
-		selene/Tuple.h \
+		../../libs/Noodle/selene/Tuple.h \
 		application/mouse.hpp \
 		application/keyboard.hpp \
 		application/states/statestack.hpp \
 		application/states/state.hpp \
 		resources/resourceholder.hpp \
-		resources/musicplayer.hpp
+		resources/musicplayer.hpp \
+		resources/soundplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
 .obj/mouse.o: application/mouse.cpp application/mouse.hpp \
@@ -513,13 +515,15 @@ compiler_clean:
 		noodle_global.h \
 		application/states/state.hpp \
 		resources/resourceholder.hpp \
-		resources/musicplayer.hpp
+		resources/musicplayer.hpp \
+		resources/soundplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/statestack.o application/states/statestack.cpp
 
 .obj/state.o: application/states/state.cpp application/states/state.hpp \
 		noodle_global.h \
 		resources/resourceholder.hpp \
 		resources/musicplayer.hpp \
+		resources/soundplayer.hpp \
 		application/states/statestack.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/state.o application/states/state.cpp
 

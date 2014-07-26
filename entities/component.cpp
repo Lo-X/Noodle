@@ -23,8 +23,8 @@
 ////////////////////////////////////////////////////////////
 
 
-#include <entities/component.hpp>
-#include <entities/system.hpp>
+#include <Noodle/entities/component.hpp>
+#include <Noodle/entities/system.hpp>
 
 using namespace ndl::es;
 

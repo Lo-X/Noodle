@@ -26,9 +26,9 @@
 #ifndef SYSTEM_HPP
 #define SYSTEM_HPP
 
-#include <noodle_global.h>
-#include <entities/entitymanager.hpp>
-#include <entities/component.hpp>
+#include <Noodle/noodle_global.h>
+#include <Noodle/entities/entitymanager.hpp>
+#include <Noodle/entities/component.hpp>
 #include <set>
 #include <vector>
 #include <memory>

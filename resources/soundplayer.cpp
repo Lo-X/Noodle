@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include <resources/soundplayer.hpp>
+#include <Noodle/resources/soundplayer.hpp>
 #include <cmath>
 
 using namespace ndl::rsc;

@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include <entities/system.hpp>
+#include <Noodle/entities/system.hpp>
 #include <cassert>
 
 using namespace ndl::es;

@@ -26,10 +26,10 @@
 #ifndef STATE_HPP
 #define STATE_HPP
 
-#include <noodle_global.h>
-#include <resources/resourceholder.hpp>
-#include <resources/musicplayer.hpp>
-#include <resources/soundplayer.hpp>
+#include <Noodle/noodle_global.h>
+#include <Noodle/resources/resourceholder.hpp>
+#include <Noodle/resources/musicplayer.hpp>
+#include <Noodle/resources/soundplayer.hpp>
 #include <memory>
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>

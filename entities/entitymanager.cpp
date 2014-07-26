@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include <entities/entitymanager.hpp>
+#include <Noodle/entities/entitymanager.hpp>
 #include <cassert>
 
 using namespace ndl::es;

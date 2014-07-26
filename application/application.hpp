@@ -26,11 +26,11 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <noodle_global.h>
-#include <selene.h>
-#include <application/mouse.hpp>
-#include <application/keyboard.hpp>
-#include <application/states/statestack.hpp>
+#include <Noodle/noodle_global.h>
+#include <Noodle/selene.h>
+#include <Noodle/application/mouse.hpp>
+#include <Noodle/application/keyboard.hpp>
+#include <Noodle/application/states/statestack.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Time.hpp>
 #include <string>

@@ -26,7 +26,7 @@
 #ifndef SOUNDPLAYER_HPP
 #define SOUNDPLAYER_HPP
 
-#include <resources/resourceholder.hpp>
+#include <Noodle/resources/resourceholder.hpp>
 #include <map>
 #include <list>
 #include <string>

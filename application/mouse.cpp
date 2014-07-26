@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 
-#include <application/mouse.hpp>
+#include <Noodle/application/mouse.hpp>
 #include <SFML/Window/Mouse.hpp>
 
 using namespace ndl::app;
