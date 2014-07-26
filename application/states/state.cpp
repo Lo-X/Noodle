@@ -46,6 +46,10 @@ State::State(StateStack& stack, Context context) :
 {
 }
 
+State::~State()
+{
+}
+
 
 void State::requestStackPush(const std::string &stateID)
 {

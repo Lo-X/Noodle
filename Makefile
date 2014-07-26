@@ -453,9 +453,9 @@ compiler_clean:
 
 ####### Compile
 
-.obj/application.o: application/application.cpp application/application.hpp \
-		noodle_global.h \
-		selene.h \
+.obj/application.o: application/application.cpp ../../libs/Noodle/application/application.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/selene.h \
 		../../libs/Noodle/selene/State.h \
 		selene/Registry.h \
 		selene/Class.h \
@@ -475,61 +475,61 @@ compiler_clean:
 		selene/Selector.h \
 		selene/util.h \
 		../../libs/Noodle/selene/Tuple.h \
-		application/mouse.hpp \
-		application/keyboard.hpp \
-		application/states/statestack.hpp \
-		application/states/state.hpp \
-		resources/resourceholder.hpp \
-		resources/musicplayer.hpp \
-		resources/soundplayer.hpp
+		../../libs/Noodle/application/mouse.hpp \
+		../../libs/Noodle/application/keyboard.hpp \
+		../../libs/Noodle/application/states/statestack.hpp \
+		../../libs/Noodle/application/states/state.hpp \
+		../../libs/Noodle/resources/resourceholder.hpp \
+		../../libs/Noodle/resources/musicplayer.hpp \
+		../../libs/Noodle/resources/soundplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/application.o application/application.cpp
 
-.obj/mouse.o: application/mouse.cpp application/mouse.hpp \
-		noodle_global.h
+.obj/mouse.o: application/mouse.cpp ../../libs/Noodle/application/mouse.hpp \
+		../../libs/Noodle/noodle_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/mouse.o application/mouse.cpp
 
-.obj/keyboard.o: application/keyboard.cpp application/keyboard.hpp \
-		noodle_global.h
+.obj/keyboard.o: application/keyboard.cpp ../../libs/Noodle/application/keyboard.hpp \
+		../../libs/Noodle/noodle_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/keyboard.o application/keyboard.cpp
 
-.obj/system.o: entities/system.cpp entities/system.hpp \
-		noodle_global.h \
-		entities/entitymanager.hpp \
-		entities/entity.hpp \
-		entities/component.hpp
+.obj/system.o: entities/system.cpp ../../libs/Noodle/entities/system.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/entities/entitymanager.hpp \
+		../../libs/Noodle/entities/entity.hpp \
+		../../libs/Noodle/entities/component.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/system.o entities/system.cpp
 
-.obj/entitymanager.o: entities/entitymanager.cpp entities/entitymanager.hpp \
-		noodle_global.h \
-		entities/entity.hpp
+.obj/entitymanager.o: entities/entitymanager.cpp ../../libs/Noodle/entities/entitymanager.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/entities/entity.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/entitymanager.o entities/entitymanager.cpp
 
-.obj/component.o: entities/component.cpp entities/component.hpp \
-		noodle_global.h \
-		entities/entitymanager.hpp \
-		entities/entity.hpp \
-		entities/system.hpp
+.obj/component.o: entities/component.cpp ../../libs/Noodle/entities/component.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/entities/entitymanager.hpp \
+		../../libs/Noodle/entities/entity.hpp \
+		../../libs/Noodle/entities/system.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/component.o entities/component.cpp
 
-.obj/statestack.o: application/states/statestack.cpp application/states/statestack.hpp \
-		noodle_global.h \
-		application/states/state.hpp \
-		resources/resourceholder.hpp \
-		resources/musicplayer.hpp \
-		resources/soundplayer.hpp
+.obj/statestack.o: application/states/statestack.cpp ../../libs/Noodle/application/states/statestack.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/application/states/state.hpp \
+		../../libs/Noodle/resources/resourceholder.hpp \
+		../../libs/Noodle/resources/musicplayer.hpp \
+		../../libs/Noodle/resources/soundplayer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/statestack.o application/states/statestack.cpp
 
-.obj/state.o: application/states/state.cpp application/states/state.hpp \
-		noodle_global.h \
-		resources/resourceholder.hpp \
-		resources/musicplayer.hpp \
-		resources/soundplayer.hpp \
-		application/states/statestack.hpp
+.obj/state.o: application/states/state.cpp ../../libs/Noodle/application/states/state.hpp \
+		../../libs/Noodle/noodle_global.h \
+		../../libs/Noodle/resources/resourceholder.hpp \
+		../../libs/Noodle/resources/musicplayer.hpp \
+		../../libs/Noodle/resources/soundplayer.hpp \
+		../../libs/Noodle/application/states/statestack.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/state.o application/states/state.cpp
 
-.obj/soundplayer.o: resources/soundplayer.cpp resources/soundplayer.hpp \
-		resources/resourceholder.hpp \
-		noodle_global.h
+.obj/soundplayer.o: resources/soundplayer.cpp ../../libs/Noodle/resources/soundplayer.hpp \
+		../../libs/Noodle/resources/resourceholder.hpp \
+		../../libs/Noodle/noodle_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/soundplayer.o resources/soundplayer.cpp
 
 ####### Install
