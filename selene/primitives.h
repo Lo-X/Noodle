@@ -205,7 +205,7 @@ T _pop(_id<T> t, lua_State *l) {
 
 /* Setters */
 
-inline void _push(lua_State *l) {}
+inline void _push(lua_State *) {}
 inline void _push(lua_State *l, bool b) {
     lua_pushboolean(l, b);
 }
@@ -251,7 +251,7 @@ inline void _push_dispatcher(lua_State *l,
     _push_n(l, std::get<N>(values)...);
 }
 
-inline void _push(lua_State *l, std::tuple<>) {}
+inline void _push(lua_State *, std::tuple<>) {}
 
 template <typename... T>
 inline void _push(lua_State *l, const std::tuple<T...> &values) {

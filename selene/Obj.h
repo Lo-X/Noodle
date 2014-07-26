@@ -72,7 +72,7 @@ private:
             {state, std::string(fun_name), lambda});
     }
 
-    void _register_members(lua_State *state, T *t) {}
+    void _register_members(lua_State *, T *) {}
 
     template <typename M, typename... Ms>
     void _register_members(lua_State *state, T *t,

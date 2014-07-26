@@ -107,7 +107,7 @@ private:
             {state, std::string(fun_name), _get_metatable_name(), lambda});
     }
 
-    void _register_members(lua_State *state) {}
+    void _register_members(lua_State *) {}
 
     template <typename M, typename... Ms>
     void _register_members(lua_State *state,

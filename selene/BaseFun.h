@@ -33,7 +33,7 @@ inline Ret _lift(std::function<Ret(Args...)> fun,
 
 template <typename... T, std::size_t... N>
 inline std::tuple<T...> _get_args(lua_State *state, _indices<N...>) {
-    return std::tuple<T...>{_check_get(_id<T>{}, state, N + 1)...};
+    return std::tuple<T...>{_check_get(_id<T>(), state, N + 1)...};
 }
 
 template <typename... T>
