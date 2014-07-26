@@ -46,7 +46,7 @@ void Application::run()
 
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-    while(!mStateStack.isEmpty())
+    while(mWindow.isOpen())
     {
         sf::Time elapsedTime = clock.restart();
         timeSinceLastUpdate += elapsedTime;
@@ -56,12 +56,14 @@ void Application::run()
 
             processEvents();
             update(sTimePerFrame);
+
+            if(mStateStack.isEmpty())
+                mWindow.close();
         }
 
         render();
     }
 
-    mWindow.close();
     quit();
 }
 
@@ -160,6 +162,7 @@ void Application::processEvents()
     sf::Event event;
     while(mWindow.pollEvent(event))
     {
+        mStateStack.handleEvent(event);
         if(event.type == sf::Event::Closed)
             mWindow.close();
     }
@@ -169,6 +172,7 @@ void Application::processEvents()
 void Application::update(sf::Time dt)
 {
     mLuaState["Step"](dt.asSeconds());
+    mStateStack.update(dt);
 }
 
 
@@ -178,6 +182,7 @@ void Application::render()
     mWindow.clear(sf::Color::Black);
 
     mLuaState["Render"]();
+    mStateStack.draw();
 
     mWindow.display();
 }
