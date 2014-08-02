@@ -127,7 +127,7 @@ void StateStack::applyPendingChanges()
 
             case Clear:
                 mStack.clear();
-            break;
+                break;
         }
     }
 

@@ -76,9 +76,9 @@ private:
 private:
     struct PendingChange
     {
-        explicit PendingChange(Action action, const std::string& id = "none");
+        PendingChange(Action action, const std::string& id = "none");
         Action              action;
-        const std::string&  stateID;
+        std::string         stateID;
     };
 
 private:
