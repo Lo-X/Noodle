@@ -58,6 +58,8 @@ public:
     void        registerState(const std::string& id);
     void        pushState(const std::string& id);
 
+    void        useLua(bool b);
+
 
 private:
     void        init();
@@ -71,6 +73,7 @@ private:
     static const sf::Time   sTimePerFrame;
     sf::RenderWindow        mWindow;
     sel::State              mLuaState;
+    bool                    mBindToLua;
 
     // StateStack
     StateStack              mStateStack;

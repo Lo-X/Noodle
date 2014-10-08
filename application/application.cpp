@@ -33,6 +33,7 @@ const sf::Time Application::sTimePerFrame = sf::seconds(1.f/60.f);
 Application::Application(unsigned int width, unsigned int height, const std::string &title) :
     mWindow(sf::VideoMode(width, height), title.c_str(), sf::Style::Close),
     mLuaState{true},
+    mBindToLua{true},
     mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mShaders)),
     mMouse(mWindow)
 {
@@ -90,6 +91,11 @@ void Application::pushState(const std::string &id)
 }
 
 
+void Application::useLua(bool b)
+{
+    mBindToLua = b;
+}
+
 ///////////////////////////////////////////////////////////////////
 
 
@@ -97,6 +103,7 @@ void Application::pushState(const std::string &id)
 void Application::init()
 {
     // Expose Application class to Lua
+    if(!mBindToLua) return;
     exposeToLua();
 
     // Load main.lua which must contain an init, step and draw function at least
@@ -171,7 +178,7 @@ void Application::processEvents()
 
 void Application::update(sf::Time dt)
 {
-    mLuaState["Step"](dt.asSeconds());
+    if(mBindToLua)  mLuaState["Step"](dt.asSeconds());
     mStateStack.update(dt);
 }
 
@@ -181,7 +188,7 @@ void Application::render()
 {
     mWindow.clear(sf::Color::Black);
 
-    mLuaState["Render"]();
+    if(mBindToLua)  mLuaState["Render"]();
     mStateStack.draw();
 
     mWindow.display();
