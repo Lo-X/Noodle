@@ -73,6 +73,11 @@ State::Context State::context() const
 }
 
 
+void State::restart()
+{
+
+}
+
 void State::onPause()
 {
 }

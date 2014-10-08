@@ -115,6 +115,7 @@ void StateStack::applyPendingChanges()
                     mStack.back()->onPause();
                 }
                 mStack.push_back(createState(change.stateID));
+                mStack.back()->restart();
                 break;
 
             case Pop:

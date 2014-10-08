@@ -75,6 +75,10 @@ public:
     virtual bool    update(sf::Time dt) = 0;
     virtual bool    handleEvent(const sf::Event& event) = 0;
 
+    // This method is called when the state is pushed back into the state machine,
+    // feel free to call it again when needed
+    virtual void    restart();
+
     virtual void    onPause();
     virtual void    onResume();
 
