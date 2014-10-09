@@ -23,51 +23,43 @@
 ////////////////////////////////////////////////////////////
 
 
-#ifndef ENTITY_HPP
-#define ENTITY_HPP
+#include <Noodle/entities/system.hpp>
 
-#include <Noodle/noodle_global.h>
-#include <Noodle/entities/entitymanager.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/System/Time.hpp>
+using namespace ndl::es;
 
-namespace ndl
+System::~System()
 {
+}
 
-namespace es
+void System::entityCreated(WeakEntityPtr entity)
 {
+    if(keepEntity(entity))
+    {
+        entityKept(entity);
+        mEntities.emplace(entity.lock()->id(), entity);
+    }
+}
 
-class NOODLESHARED_EXPORT Entity
+void System::entityRemoved(EntityId id)
 {
-public:
-    Entity(EntityId id, std::size_t group, EntityManager& manager);
-    virtual ~Entity();
+    if(mEntities.find(id) != mEntities.end())
+    {
+        entityDropped(mEntities.at(id));
+        mEntities.erase(id);
+    }
+}
 
-    template <class DataType>
-    const DataType&     attribute(const std::string& name) const;
-
-    template <class DataType>
-    DataType&           attribute(const std::string& name);
-
-    template <class DataType>
-    void                setAttribute(const std::string& name, const DataType& value);
-
-    bool                hasAttribute(const std::string& name) const;
-
-
-    EntityId            id() const;
-    std::size_t         group() const;
-
-private:
-    EntityId            mId;
-    EntityManager&      mManager;
-    std::size_t         mGroup;
-};
+void System::entityKept(WeakEntityPtr /*entity*/)
+{
 
 }
 
+void System::entityDropped(WeakEntityPtr /*entity*/)
+{
+
 }
 
-#include <Noodle/entities/entity.inl>
-
-#endif // ENTITY_HPP
+const std::map<EntityId, WeakEntityPtr>& System::entities() const
+{
+    return mEntities;
+}

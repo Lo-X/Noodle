@@ -45,6 +45,7 @@ namespace es
 {
 
 class Entity;
+class System;
 
 using EntityPtr = std::shared_ptr<Entity>;
 using WeakEntityPtr = std::weak_ptr<Entity>;
@@ -74,6 +75,9 @@ public:
 public:
     EntityManager();
 
+    void                addSystem(System& system);
+    void                removeSystem(System& system);
+
     WeakEntityPtr       createEntity(const std::set<std::string>& attributes, std::size_t group = 0);
     WeakEntityPtr       entity(EntityId id) const;
     void                removeEntity(EntityId id);
@@ -91,12 +95,9 @@ public:
     void            removeAllEntities();
     void            clear();
 
-    void            draw(sf::RenderTarget& target, sf::RenderStates states) const;
-    void            update(sf::Time dt);
-
 private:
-    EntityId            mNextEntity;
-    std::stack<EntityId>  mFreeEntityIds;
+    EntityId                mNextEntity;
+    std::stack<EntityId>    mFreeEntityIds;
 
     // map entities id <> entities
     std::map<EntityId, EntityPtr>     mEntities;
@@ -104,6 +105,8 @@ private:
     std::map<EntityId, EntityStorage> mAttributes;
     // map groups <> entities
     std::map<std::size_t, std::set<EntityId>>   mGroups;
+    // Systems
+    std::set<System*>   mSystems;
 };
 
 

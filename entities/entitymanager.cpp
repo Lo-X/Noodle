@@ -25,6 +25,7 @@
 
 #include <Noodle/entities/entitymanager.hpp>
 #include <Noodle/entities/entity.hpp>
+#include <Noodle/entities/system.hpp>
 #include <cassert>
 
 using namespace ndl::es;
@@ -52,9 +53,21 @@ EntityManager::EntityManager() :
 {
 }
 
-#include <iostream>
+
+void EntityManager::addSystem(System &system)
+{
+    mSystems.insert(&system);
+}
+
+void EntityManager::removeSystem(System &system)
+{
+    mSystems.erase(&system);
+}
+
+
 WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attributes, std::size_t group)
 {
+    // Get the entity ID
     EntityId id;
     if(!mFreeEntityIds.empty())
     {
@@ -66,8 +79,10 @@ WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attribute
         id = ++mNextEntity;
     }
 
+    // Create the entity
     EntityPtr e = std::make_shared<Entity>(id, group, *this);
 
+    // Add the entity to the maps that need to contain it
     mEntities.insert(std::pair<EntityId, EntityPtr>(id, e));
     mAttributes.insert(std::pair<EntityId, EntityStorage>(id, EntityStorage((attributes))));
     if(mGroups.find(group) == mGroups.end())
@@ -76,7 +91,16 @@ WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attribute
     }
     mGroups[group].insert(id);
 
-    return WeakEntityPtr(e);
+    // Weak ptr on the entity
+    WeakEntityPtr we(e);
+
+    // Notify the systems that a new entity has been created
+    for(System* s : mSystems)
+    {
+        s->entityCreated(we);
+    }
+
+    return we;
 }
 
 WeakEntityPtr EntityManager::entity(EntityId id) const
@@ -94,6 +118,15 @@ WeakEntityPtr EntityManager::entity(EntityId id) const
 void EntityManager::removeEntity(EntityId id)
 {
     assert(mEntities.find(id) != mEntities.end());
+
+    // Weak ptr on the entity
+    WeakEntityPtr we(mEntities.at(id));
+
+    // Notify the systems that an entity has been removed
+    for(System* s : mSystems)
+    {
+        s->entityRemoved(we);
+    }
 
     mGroups[mEntities[id]->group()].erase(id);
     mAttributes.erase(id);
@@ -134,22 +167,5 @@ void EntityManager::clear()
     mAttributes.clear();
     while(!mFreeEntityIds.empty()) mFreeEntityIds.pop();
     mNextEntity = 0;
-}
-
-
-void EntityManager::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    for(auto pair : mEntities)
-    {
-        pair.second->draw(target, states);
-    }
-}
-
-void EntityManager::update(sf::Time dt)
-{
-    for(auto pair : mEntities)
-    {
-        pair.second->update(dt);
-    }
 }
 
