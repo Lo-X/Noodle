@@ -35,6 +35,21 @@ Entity::Entity(unsigned int id, std::size_t group, EntityManager& manager) :
 
 }
 
+Entity::~Entity()
+{
+
+}
+
+void Entity::draw(sf::RenderTarget &/*target*/, sf::RenderStates /*states*/) const
+{
+
+}
+
+void Entity::update(sf::Time dt)
+{
+
+}
+
 
 bool Entity::hasAttribute(const std::string& name) const
 {

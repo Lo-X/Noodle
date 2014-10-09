@@ -136,3 +136,20 @@ void EntityManager::clear()
     mNextEntity = 0;
 }
 
+
+void EntityManager::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    for(auto pair : mEntities)
+    {
+        pair.second->draw(target, states);
+    }
+}
+
+void EntityManager::update(sf::Time dt)
+{
+    for(auto pair : mEntities)
+    {
+        pair.second->update(dt);
+    }
+}
+

@@ -27,6 +27,8 @@
 #define ENTITYMANAGER_HPP
 
 #include <Noodle/noodle_global.h>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Time.hpp>
 #include <string>
 #include <map>
 #include <unordered_map>
@@ -88,6 +90,9 @@ public:
 
     void            removeAllEntities();
     void            clear();
+
+    void            draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    void            update(sf::Time dt);
 
 private:
     EntityId            mNextEntity;

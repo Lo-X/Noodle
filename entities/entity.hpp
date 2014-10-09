@@ -28,6 +28,8 @@
 
 #include <Noodle/noodle_global.h>
 #include <Noodle/entities/entitymanager.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Time.hpp>
 
 namespace ndl
 {
@@ -39,6 +41,10 @@ class NOODLESHARED_EXPORT Entity
 {
 public:
     Entity(EntityId id, std::size_t group, EntityManager& manager);
+    virtual ~Entity();
+
+    virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void        update(sf::Time dt);
 
     template <class DataType>
     const DataType&     attribute(const std::string& name) const;
