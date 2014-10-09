@@ -38,7 +38,7 @@ namespace es
 class NOODLESHARED_EXPORT Entity
 {
 public:
-    Entity(EntityId id, EntityManager& manager);
+    Entity(EntityId id, std::size_t group, EntityManager& manager);
 
     template <class DataType>
     const DataType&     attribute(const std::string& name) const;
@@ -53,10 +53,12 @@ public:
 
 
     EntityId            id() const;
+    std::size_t         group() const;
 
 private:
     EntityId            mId;
     EntityManager&      mManager;
+    std::size_t         mGroup;
 };
 
 }

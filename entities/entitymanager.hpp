@@ -28,6 +28,7 @@
 
 #include <Noodle/noodle_global.h>
 #include <string>
+#include <map>
 #include <unordered_map>
 #include <vector>
 #include <set>
@@ -71,9 +72,11 @@ public:
 public:
     EntityManager();
 
-    WeakEntityPtr       createEntity(const std::set<std::string>& attributes);
+    WeakEntityPtr       createEntity(const std::set<std::string>& attributes, std::size_t group = 0);
     WeakEntityPtr       entity(EntityId id) const;
     void                removeEntity(EntityId id);
+
+    const std::set<EntityId>& entitiesByGroup(std::size_t group) const;
 
     template <class DataType>
     void            setAttribute(const EntityId id, const std::string& name, const DataType& value);
@@ -91,10 +94,11 @@ private:
     std::stack<EntityId>  mFreeEntityIds;
 
     // map entities id <> entities
-    std::unordered_map<EntityId, EntityPtr> mEntities;
+    std::map<EntityId, EntityPtr>     mEntities;
     // map entities id <> attributes
-    std::unordered_map<EntityId, EntityStorage> mAttributes;
-
+    std::map<EntityId, EntityStorage> mAttributes;
+    // map groups <> entities
+    std::map<std::size_t, std::set<EntityId>>   mGroups;
 };
 
 

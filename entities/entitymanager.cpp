@@ -53,7 +53,7 @@ EntityManager::EntityManager() :
 }
 
 #include <iostream>
-WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attributes)
+WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attributes, std::size_t group)
 {
     EntityId id;
     if(!mFreeEntityIds.empty())
@@ -66,10 +66,15 @@ WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attribute
         id = ++mNextEntity;
     }
 
-    EntityPtr e = std::make_shared<Entity>(id, *this);
+    EntityPtr e = std::make_shared<Entity>(id, group, *this);
 
     mEntities.insert(std::pair<EntityId, EntityPtr>(id, e));
     mAttributes.insert(std::pair<EntityId, EntityStorage>(id, EntityStorage((attributes))));
+    if(mGroups.find(group) == mGroups.end())
+    {
+        mGroups[group] = std::set<EntityId>();
+    }
+    mGroups[group].insert(id);
 
     return WeakEntityPtr(e);
 }
@@ -90,11 +95,21 @@ void EntityManager::removeEntity(EntityId id)
 {
     assert(mEntities.find(id) != mEntities.end());
 
+    mGroups[mEntities[id]->group()].erase(id);
     mAttributes.erase(id);
     mEntities.erase(id);
 
     mFreeEntityIds.push(id);
 }
+
+const std::set<EntityId>& EntityManager::entitiesByGroup(std::size_t group) const
+{
+    assert(mGroups.find(group) != mGroups.end());
+
+    const std::set<EntityId>& set = mGroups.at(group);
+    return set;
+}
+
 
 bool EntityManager::hasAttribute(const EntityId id, const std::string& name) const
 {

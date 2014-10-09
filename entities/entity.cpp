@@ -27,9 +27,10 @@
 
 using namespace ndl::es;
 
-Entity::Entity(unsigned int id, EntityManager& manager) :
+Entity::Entity(unsigned int id, std::size_t group, EntityManager& manager) :
     mId(id),
-    mManager(manager)
+    mManager(manager),
+    mGroup(group)
 {
 
 }
@@ -43,4 +44,9 @@ bool Entity::hasAttribute(const std::string& name) const
 unsigned int Entity::id() const
 {
     return mId;
+}
+
+std::size_t Entity::group() const
+{
+    return mGroup;
 }
