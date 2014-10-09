@@ -34,7 +34,7 @@ template <class DataType>
 void EntityManager::EntityStorage::setData(const std::string& name, const DataType& value)
 {
     assert(mAttributeData.find(name) != mAttributeData.end());
-    auto valuePtr = mAttributeData.at(name);
+    auto& valuePtr = mAttributeData.at(name);
 
     if(!valuePtr)
         valuePtr = std::make_shared<DataType>(value);
@@ -46,7 +46,7 @@ template <class DataType>
 const DataType& EntityManager::EntityStorage::data(const std::string& name) const
 {
     assert(mAttributeData.find(name) != mAttributeData.end());
-    auto valuePtr = mAttributeData.at(name);
+    auto& valuePtr = mAttributeData.at(name);
 
     assert(valuePtr);
     return *std::static_pointer_cast<DataType>(valuePtr);
@@ -56,7 +56,7 @@ template <class DataType>
 DataType& EntityManager::EntityStorage::data(const std::string& name)
 {
     assert(mAttributeData.find(name) != mAttributeData.end());
-    auto valuePtr = mAttributeData.at(name);
+    auto& valuePtr = mAttributeData.at(name);
 
     assert(valuePtr);
     return *std::static_pointer_cast<DataType>(valuePtr);

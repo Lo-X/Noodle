@@ -47,7 +47,7 @@ public:
     DataType&           attribute(const std::string& name);
 
     template <class DataType>
-    void                setAttribute(const std::string& name, const DataType& value) const;
+    void                setAttribute(const std::string& name, const DataType& value);
 
     bool                hasAttribute(const std::string& name) const;
 
@@ -56,7 +56,7 @@ public:
 
 private:
     EntityId            mId;
-    EntityManager       mManager;
+    EntityManager&      mManager;
 };
 
 }

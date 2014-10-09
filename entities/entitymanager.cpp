@@ -52,7 +52,7 @@ EntityManager::EntityManager() :
 {
 }
 
-
+#include <iostream>
 WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attributes)
 {
     EntityId id;
@@ -105,5 +105,19 @@ bool EntityManager::hasAttribute(const EntityId id, const std::string& name) con
 
 
 
+void EntityManager::removeAllEntities()
+{
+    while(mEntities.size() > 0)
+    {
+        removeEntity(mEntities.begin()->first);
+    }
+}
 
+void EntityManager::clear()
+{
+    mEntities.clear();
+    mAttributes.clear();
+    while(!mFreeEntityIds.empty()) mFreeEntityIds.pop();
+    mNextEntity = 0;
+}
 

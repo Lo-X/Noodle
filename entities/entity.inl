@@ -24,6 +24,7 @@
 
 #include <Noodle/entities/entity.hpp>
 #include <Noodle/entities/entitymanager.hpp>
+#include <cassert>
 
 using namespace ndl::es;
 
@@ -32,18 +33,18 @@ template <class DataType>
 const DataType& Entity::attribute(const std::string& name) const
 {
     assert(!mManager.entity(mId).expired());
-    return mManager.attribute<DataType>(id, name);
+    return mManager.attribute<DataType>(mId, name);
 }
 
 template <class DataType>
 DataType& Entity::attribute(const std::string& name)
 {
     assert(!mManager.entity(mId).expired());
-    return mManager.attribute<DataType>(id, name);
+    return mManager.attribute<DataType>(mId, name);
 }
 
 template <class DataType>
-void Entity::setAttribute(const std::string& name, const DataType& value) const
+void Entity::setAttribute(const std::string& name, const DataType& value)
 {
     mManager.setAttribute<DataType>(mId, name, value);
 }
