@@ -27,9 +27,13 @@
 #define ENTITYMANAGER_HPP
 
 #include <Noodle/noodle_global.h>
-#include <Noodle/entities/entity.hpp>
 #include <string>
-#include <map>
+#include <unordered_map>
+#include <vector>
+#include <set>
+#include <stack>
+#include <memory>
+#include <stdint.h>
 
 namespace ndl
 {
@@ -37,24 +41,59 @@ namespace ndl
 namespace es
 {
 
+class Entity;
+
+using EntityPtr = std::shared_ptr<Entity>;
+using WeakEntityPtr = std::weak_ptr<Entity>;
+using EntityId = u_int32_t;
+using EntitySet = std::set<WeakEntityPtr, std::owner_less<WeakEntityPtr>>;
+
 
 class NOODLESHARED_EXPORT EntityManager
 {
 public:
-    typedef std::map<std::string,Entity> AliasMap;
+    class EntityStorage
+    {
+    public:
+        EntityStorage(const std::set<std::string>& attributesList);
+        template <class DataType>
+        void            setData(const std::string& name, const DataType& value);
+        template <class DataType>
+        const DataType& data(const std::string& name) const;
+        template <class DataType>
+        DataType&       data(const std::string& name);
+        bool            hasData(const std::string& name) const;
+
+    private:
+        std::unordered_map<std::string, std::shared_ptr<void>>  mAttributeData;
+    };
 
 public:
     EntityManager();
 
-    Entity          createEntity();
-    Entity          createEntity(const std::string& alias);
-    Entity          getByAlias(const std::string& alias);
-    void            registerAlias(Entity e, const std::string& alias);
+    WeakEntityPtr       createEntity(const std::set<std::string>& attributes);
+    WeakEntityPtr       entity(EntityId id) const;
+    void                removeEntity(EntityId id);
 
+    template <class DataType>
+    void            setAttribute(const EntityId id, const std::string& name, const DataType& value);
+    template <class DataType>
+    const DataType& attribute(const EntityId id, const std::string& name) const;
+    template <class DataType>
+    DataType&       attribute(const EntityId id, const std::string& name);
+    bool            hasAttribute(const EntityId id, const std::string& name) const;
+
+    void            removeAllEntities();
+    void            clear();
 
 private:
-    Entity          mNextEntity;
-    AliasMap        mEntityAliases;
+    EntityId            mNextEntity;
+    std::stack<EntityId>  mFreeEntityIds;
+
+    // map entities id <> entities
+    std::unordered_map<EntityId, EntityPtr> mEntities;
+    // map entities id <> attributes
+    std::unordered_map<EntityId, EntityStorage> mAttributes;
 
 };
 
@@ -62,5 +101,7 @@ private:
 }
 
 }
+
+#include <Noodle/entities/entitymanager.inl>
 
 #endif // ENTITYMANAGER_HPP

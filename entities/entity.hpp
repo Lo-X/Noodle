@@ -27,6 +27,7 @@
 #define ENTITY_HPP
 
 #include <Noodle/noodle_global.h>
+#include <Noodle/entities/entitymanager.hpp>
 
 namespace ndl
 {
@@ -34,10 +35,34 @@ namespace ndl
 namespace es
 {
 
-typedef unsigned int Entity;
+class NOODLESHARED_EXPORT Entity
+{
+public:
+    Entity(EntityId id, EntityManager& manager);
+
+    template <class DataType>
+    const DataType&     attribute(const std::string& name) const;
+
+    template <class DataType>
+    DataType&           attribute(const std::string& name);
+
+    template <class DataType>
+    void                setAttribute(const std::string& name, const DataType& value) const;
+
+    bool                hasAttribute(const std::string& name) const;
+
+
+    EntityId            id() const;
+
+private:
+    EntityId            mId;
+    EntityManager       mManager;
+};
 
 }
 
 }
+
+#include <Noodle/entities/entity.inl>
 
 #endif // ENTITY_HPP

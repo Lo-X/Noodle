@@ -24,9 +24,28 @@
 
 
 #include <Noodle/entities/entitymanager.hpp>
+#include <Noodle/entities/entity.hpp>
 #include <cassert>
 
 using namespace ndl::es;
+
+EntityManager::EntityStorage::EntityStorage(const std::set<std::string>& attributesList)
+{
+    for(const auto& attribute : attributesList)
+    {
+        mAttributeData.emplace(attribute, std::shared_ptr<void>());
+    }
+}
+
+
+bool EntityManager::EntityStorage::hasData(const std::string& name) const
+{
+    return mAttributeData.find(name) != mAttributeData.end();
+}
+
+
+/****************************************************************************/
+
 
 EntityManager::EntityManager() :
     mNextEntity(0)
@@ -34,35 +53,57 @@ EntityManager::EntityManager() :
 }
 
 
-Entity EntityManager::createEntity()
+WeakEntityPtr EntityManager::createEntity(const std::set<std::string>& attributes)
 {
-    return mNextEntity++;
+    EntityId id;
+    if(!mFreeEntityIds.empty())
+    {
+        id = mFreeEntityIds.top();
+        mFreeEntityIds.pop();
+    }
+    else
+    {
+        id = ++mNextEntity;
+    }
+
+    EntityPtr e = std::make_shared<Entity>(id, *this);
+
+    mEntities.insert(std::pair<EntityId, EntityPtr>(id, e));
+    mAttributes.insert(std::pair<EntityId, EntityStorage>(id, EntityStorage((attributes))));
+
+    return WeakEntityPtr(e);
+}
+
+WeakEntityPtr EntityManager::entity(EntityId id) const
+{
+    try
+    {
+        return mEntities.at(id);
+    }
+    catch(std::out_of_range)
+    {
+        return WeakEntityPtr();
+    }
+}
+
+void EntityManager::removeEntity(EntityId id)
+{
+    assert(mEntities.find(id) != mEntities.end());
+
+    mAttributes.erase(id);
+    mEntities.erase(id);
+
+    mFreeEntityIds.push(id);
+}
+
+bool EntityManager::hasAttribute(const EntityId id, const std::string& name) const
+{
+    assert(mEntities.find(id) != mEntities.end());
+
+    return mAttributes.find(id)->second.hasData(name);
 }
 
 
-Entity EntityManager::createEntity(const std::string &alias)
-{
-    Entity e = mNextEntity++;
-
-    assert(mEntityAliases.find(alias) == mEntityAliases.end());
-
-    mEntityAliases[alias] = e;
-    return e;
-}
 
 
-Entity EntityManager::getByAlias(const std::string &alias)
-{
-    assert(mEntityAliases.find(alias) != mEntityAliases.end());
-
-    return mEntityAliases[alias];
-}
-
-
-void EntityManager::registerAlias(Entity e, const std::string &alias)
-{
-    assert(mEntityAliases.find(alias) == mEntityAliases.end());
-
-    mEntityAliases[alias] = e;
-}
 

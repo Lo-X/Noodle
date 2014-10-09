@@ -22,49 +22,25 @@
 //
 ////////////////////////////////////////////////////////////
 
-
-#ifndef COMPONENT_HPP
-#define COMPONENT_HPP
-
-#include <Noodle/noodle_global.h>
+#include <Noodle/entities/entity.hpp>
 #include <Noodle/entities/entitymanager.hpp>
-#include <memory>
 
-namespace ndl
+using namespace ndl::es;
+
+Entity::Entity(unsigned int id, EntityManager& manager) :
+    mId(id),
+    mManager(manager)
 {
-
-namespace es
-{
-
-class System;
-
-class NOODLESHARED_EXPORT Component : public std::enable_shared_from_this<Component>
-{
-public:
-    typedef std::shared_ptr<Component> Ptr;
-
-public:
-    Component(Entity e, System& s);
-    virtual ~Component();
-
-    Entity      owner() const;
-    System&     system() const;
-
-    void        deleteLater();
-
-    //
-    virtual void    start();
-    virtual void    stop();
-
-private:
-    Entity      mOwner;
-    System&     mSystem;
-    bool        mAutoRemoved;
-};
-
 
 }
 
+
+bool Entity::hasAttribute(const std::string& name) const
+{
+    return mManager.hasAttribute(mId, name);
 }
 
-#endif // COMPONENT_HPP
+unsigned int Entity::id() const
+{
+    return mId;
+}

@@ -22,51 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
-
-#ifndef SYSTEM_HPP
-#define SYSTEM_HPP
-
-#include <Noodle/noodle_global.h>
+#include <Noodle/entities/entity.hpp>
 #include <Noodle/entities/entitymanager.hpp>
-#include <Noodle/entities/component.hpp>
-#include <set>
-#include <vector>
-#include <memory>
-#include <SFML/System/Time.hpp>
 
-namespace ndl
+using namespace ndl::es;
+
+
+template <class DataType>
+const DataType& Entity::attribute(const std::string& name) const
 {
-
-namespace es
-{
-
-
-class NOODLESHARED_EXPORT System
-{
-public:
-    typedef std::set<Component::Ptr> ComponentSet;
-    typedef std::vector<Component::Ptr> ComponentVector;
-
-public:
-    System();
-    virtual ~System();
-
-    void            addComponent(Component::Ptr component);
-    void            removeComponentLater(Component::Ptr component);
-    void            removeComponentNow(Component::Ptr component);
-
-    void            update(sf::Time dt);
-    virtual void    updateComponents(sf::Time dt) = 0;
-
-protected:
-    ComponentVector     mNewComponents;
-    ComponentSet        mComponents;
-    ComponentVector     mOldComponents;
-};
-
-
+    assert(!mManager.entity(mId).expired());
+    return mManager.attribute<DataType>(id, name);
 }
 
+template <class DataType>
+DataType& Entity::attribute(const std::string& name)
+{
+    assert(!mManager.entity(mId).expired());
+    return mManager.attribute<DataType>(id, name);
 }
 
-#endif // SYSTEM_HPP
+template <class DataType>
+void Entity::setAttribute(const std::string& name, const DataType& value) const
+{
+    mManager.setAttribute<DataType>(mId, name, value);
+}
