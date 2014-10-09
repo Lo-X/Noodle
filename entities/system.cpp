@@ -49,6 +49,11 @@ void System::entityRemoved(EntityId id)
     }
 }
 
+bool System::keepEntity(WeakEntityPtr /*entity*/) const
+{
+    return false;
+}
+
 void System::entityKept(WeakEntityPtr /*entity*/)
 {
 
@@ -62,4 +67,19 @@ void System::entityDropped(WeakEntityPtr /*entity*/)
 const std::map<EntityId, WeakEntityPtr>& System::entities() const
 {
     return mEntities;
+}
+
+void System::draw(sf::RenderTarget &/*target*/) const
+{
+
+}
+
+void System::update(sf::Time /*dt*/)
+{
+
+}
+
+void System::handleEvent(const sf::Event &/*e*/)
+{
+
 }

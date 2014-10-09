@@ -28,6 +28,9 @@
 
 #include <Noodle/noodle_global.h>
 #include <Noodle/entities/entitymanager.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/Window/Event.hpp>
 #include <map>
 
 namespace ndl
@@ -39,16 +42,21 @@ namespace es
 class NOODLESHARED_EXPORT System
 {
 public:
+    System() = default;
     virtual ~System();
 
     void    entityCreated(WeakEntityPtr entity);
     void    entityRemoved(EntityId id);
 
-    virtual bool    keepEntity(WeakEntityPtr entity) const = 0;
+    virtual bool    keepEntity(WeakEntityPtr entity) const;
     virtual void    entityKept(WeakEntityPtr entity);
     virtual void    entityDropped(WeakEntityPtr entity);
 
     const std::map<EntityId, WeakEntityPtr>& entities() const;
+
+    virtual void    draw(sf::RenderTarget& target) const;
+    virtual void    update(sf::Time dt);
+    virtual void    handleEvent(const sf::Event& e);
 
 protected:
     std::map<EntityId, WeakEntityPtr>   mEntities;

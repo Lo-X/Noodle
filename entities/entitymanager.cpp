@@ -119,13 +119,10 @@ void EntityManager::removeEntity(EntityId id)
 {
     assert(mEntities.find(id) != mEntities.end());
 
-    // Weak ptr on the entity
-    WeakEntityPtr we(mEntities.at(id));
-
     // Notify the systems that an entity has been removed
     for(System* s : mSystems)
     {
-        s->entityRemoved(we);
+        s->entityRemoved(id);
     }
 
     mGroups[mEntities[id]->group()].erase(id);
@@ -163,6 +160,7 @@ void EntityManager::removeAllEntities()
 
 void EntityManager::clear()
 {
+    mSystems.clear();
     mEntities.clear();
     mAttributes.clear();
     while(!mFreeEntityIds.empty()) mFreeEntityIds.pop();
